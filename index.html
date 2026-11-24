@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сколько сахара в...?</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #fff4ed, #fce8e4, #fff8ef);
+  color: #49372f;
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(135deg, #eec3ad, #f7d8c8, #f3cbbd);
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(130, 85, 65, 0.12);
+  border-radius: 0 0 28px 28px;
+}
+
+header h1 {
+  font-size: 32px;
+  color: #704638;
+  margin: 0 0 12px;
+}
+
+header p {
+  font-size: 16px;
+  color: #79584b;
+  margin: 0;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p { margin-bottom: 0; }
+
+.about {
+  max-width: 850px;
+  margin: 30px auto;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 22px;
+  box-shadow: 0 5px 20px rgba(130, 85, 65, 0.08);
+  line-height: 1.7;
+}
+
+.about h2 {
+  color: #9b6655;
+  text-align: center;
+  margin-top: 0;
+  font-size: 25px;
+}
+
+.about p {
+  font-size: 16px;
+}
+
+.about .note {
+  background: #fff1e9;
+  padding: 14px;
+  border-radius: 12px;
+  color: #886455;
+  font-size: 14px;
+}
+
+main {
+  max-width: 700px;
+  margin: 35px auto;
+  padding: 20px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 8px 28px rgba(130, 85, 65, 0.12);
+  border: 1px solid #f5e2d8;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card h2 {
+  color: #805344;
+  text-align: center;
+  font-size: 25px;
+  margin-top: 0;
+}
+
+h2 { text-align: center; }
+
+input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e7c5a9;
+  border-radius: 12px;
+  font-size: 17px;
+  margin: 10px 0;
+}
+
+button {
+  background: #bd805b;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover { background: #a96d4b; }
+
+.result {
+  display: none;
+  margin-top: 25px;
+  text-align: center;
+  background: #fff5eb;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.number {
+  font-size: 35px;
+  color: #b66d43;
+  font-weight: bold;
+}
+
+.cubes {
+  font-size: 27px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+nav {
+  text-align: center;
+  margin-top: 25px;
+}
+
+nav a {
+  color: #996044;
+  margin: 8px;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #88776b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🍬 Сколько сахара в...?</h1>
+  <p>Узнай, сколько сахара содержится в твоих продуктах</p>
+</header>
+
+<section class="about">
+  <h2>О нашем проекте 🍬</h2>
+  <p>Этот сайт создан с целью наглядно показать содержание сахаров в различных продуктах питания.</p>
+  <p>Главная задача проекта — помочь пользователям лучше ориентироваться в составе привычных продуктов, сравнивать их между собой и получать полезную информацию о питании.</p>
+  <p>Калькулятор позволяет рассчитать количество сахара в зависимости от массы порции и представить результат в виде условных кубиков сахара.</p>
+  <p class="note">Все значения являются ориентировочными и могут отличаться в зависимости от состава и производителя продукта.</p>
+</section>
+
+<main>
+  <div class="card">
+    <h2>Калькулятор сахара</h2>
+    <p>Введи название продукта:</p>
+
+    <input
+      id="product"
+      list="products"
+      placeholder="Например, Coca-Cola"
+    >
+
+    
+<datalist id="products">
+  <option value="Coca-Cola">
+  <option value="Pepsi">
+  <option value="Fanta">
+  <option value="Молочный шоколад">
+  <option value="Молоко">
+  <option value="Йогурт">
+  <option value="Банан">
+  <option value="Яблоко">
+  <option value="Апельсиновый сок">
+  <option value="Печенье">
+  <option value="Мёд">
+  <option value="Кетчуп">
+  <option value="Горький шоколад">
+  <option value="Белый шоколад">
+  <option value="Шоколад">
+  <option value="Хлеб">
+  <option value="Батон">
+  <option value="Гречка">
+  <option value="Рис">
+  <option value="Макароны">
+  <option value="Картофель">
+  <option value="Морковь">
+  <option value="Огурец">
+  <option value="Помидор">
+  <option value="Груша">
+  <option value="Виноград">
+  <option value="Клубника">
+  <option value="Апельсин">
+  <option value="Мандарины">
+  <option value="Конфеты">
+  <option value="Мороженое">
+  <option value="Торт">
+  <option value="Варенье">
+  <option value="Сгущёнка">
+  <option value="Кефир">
+  <option value="Ряженка">
+  <option value="Творог">
+  <option value="Сметана">
+  <option value="Сыр">
+  <option value="Сливки">
+  <option value="Творожок">
+  <option value="Сырок">
+  <option value="Курица">
+  <option value="Говядина">
+  <option value="Свинина">
+  <option value="Индейка">
+  <option value="Рыба">
+  <option value="Лосось">
+  <option value="Яйцо">
+  <option value="Овсянка">
+  <option value="Перловка">
+  <option value="Пшено">
+  <option value="Фасоль">
+  <option value="Горох">
+  <option value="Чечевица">
+  <option value="Кабачок">
+  <option value="Капуста">
+  <option value="Свёкла">
+  <option value="Лук">
+  <option value="Перец">
+  <option value="Арбуз">
+  <option value="Дыня">
+  <option value="Киви">
+  <option value="Персик">
+  <option value="Ананас">
+  <option value="Лимон">
+  <option value="Кофе">
+  <option value="Чай">
+  <option value="Лимонад">
+  <option value="Компот">
+  <option value="Какао">
+  <option value="Круассан">
+  <option value="Булочка">
+  <option value="Блины">
+  <option value="Сырники">
+  <option value="Пицца">
+  <option value="Сухари">
+  <option value="Чипсы">
+</datalist>
+
+
+    <p>Масса порции (г):</p>
+    <input id="weight" type="number" value="100" min="1" style="display:block; visibility:visible; opacity:1; background:white; color:black;">
+
+    <button onclick="calculate()">Узнать количество сахара</button>
+
+    <div class="result" id="result">
+      <h2 id="productName"></h2>
+      <p>Содержание сахара:</p>
+      <div class="number" id="grams"></div>
+      <p>Это примерно:</p>
+      <div class="number" id="cubeNumber"></div>
+      <div class="cubes" id="cubes"></div>
+      <p>кубиков сахара 🧊</p>
+      <p id="explanation"></p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Учебный проект о содержании сахара в продуктах
+</footer>
+
+<script>
+const database = {
+  "coca-cola": {name:"Coca-Cola", sugar:10.6},
+  "pepsi": {name:"Pepsi", sugar:11},
+  "fanta": {name:"Fanta", sugar:9.5},
+  "молочный шоколад": {name:"Молочный шоколад", sugar:56},
+  "молоко": {name:"Молоко", sugar:4.8},
+  "йогурт": {name:"Йогурт", sugar:12},
+  "банан": {name:"Банан", sugar:12.2},
+  "яблоко": {name:"Яблоко", sugar:10.4},
+  "апельсиновый сок": {name:"Апельсиновый сок", sugar:8.4},
+  "печенье": {name:"Печенье", sugar:25},
+  "мёд": {name:"Мёд", sugar:82},
+"кетчуп": {name:"Кетчуп", sugar:22},
+"горький шоколад": {name:"Горький шоколад", sugar:28},
+"белый шоколад": {name:"Белый шоколад", sugar:56},
+"шоколад": {name:"Молочный шоколад", sugar:56},
+"хлеб": {name:"Белый хлеб", sugar:5},
+"батон": {name:"Батон", sugar:5},
+"гречка": {name:"Гречка", sugar:0.9},
+"рис": {name:"Рис", sugar:0.1},
+"макароны": {name:"Макароны", sugar:2.7},
+"картофель": {name:"Картофель", sugar:1.7},
+"морковь": {name:"Морковь", sugar:4.7},
+"огурец": {name:"Огурец", sugar:1.7},
+"помидор": {name:"Помидор", sugar:2.6},
+"груша": {name:"Груша", sugar:10},
+"виноград": {name:"Виноград", sugar:16},
+"клубника": {name:"Клубника", sugar:4.9},
+"апельсин": {name:"Апельсин", sugar:9},
+"мандарины": {name:"Мандарины", sugar:10.6},
+"конфеты": {name:"Конфеты", sugar:60},
+"мороженое": {name:"Мороженое", sugar:21},
+"торт": {name:"Торт", sugar:35},
+"варенье": {name:"Варенье", sugar:60},
+"сгущёнка": {name:"Сгущённое молоко", sugar:55},
+"кефир": {name:"Кефир", sugar:4},
+"ряженка": {name:"Ряженка", sugar:4.2},
+"творог": {name:"Творог", sugar:3.3},
+"сметана": {name:"Сметана", sugar:3.4},
+"сыр": {name:"Твёрдый сыр", sugar:0.1},
+"сливки": {name:"Сливки", sugar:3},
+"творожок": {name:"Сладкий творожок", sugar:15},
+"сырок": {name:"Глазированный сырок", sugar:30},
+"курица": {name:"Куриное мясо", sugar:0},
+"говядина": {name:"Говядина", sugar:0},
+"свинина": {name:"Свинина", sugar:0},
+"индейка": {name:"Индейка", sugar:0},
+"рыба": {name:"Рыба", sugar:0},
+"лосось": {name:"Лосось", sugar:0},
+"яйцо": {name:"Куриное яйцо", sugar:0.7},
+"овсянка": {name:"Овсяные хлопья", sugar:1},
+"перловка": {name:"Перловка", sugar:0.8},
+"пшено": {name:"Пшено", sugar:1.5},
+"фасоль": {name:"Фасоль", sugar:2.1},
+"горох": {name:"Горох", sugar:5.7},
+"чечевица": {name:"Чечевица", sugar:1.5},
+"кабачок": {name:"Кабачок", sugar:2.5},
+"капуста": {name:"Белокочанная капуста", sugar:4.7},
+"свёкла": {name:"Свёкла", sugar:6.8},
+"лук": {name:"Репчатый лук", sugar:4.2},
+"перец": {name:"Болгарский перец", sugar:4.2},
+"арбуз": {name:"Арбуз", sugar:6.2},
+"дыня": {name:"Дыня", sugar:7.9},
+"киви": {name:"Киви", sugar:9},
+"персик": {name:"Персик", sugar:8.4},
+"ананас": {name:"Ананас", sugar:10},
+"лимон": {name:"Лимон", sugar:2.5},
+"кофе": {name:"Чёрный кофе без сахара", sugar:0},
+"чай": {name:"Чай без сахара", sugar:0},
+"лимонад": {name:"Сладкий лимонад", sugar:10},
+"компот": {name:"Компот", sugar:8},
+"какао": {name:"Какао с сахаром", sugar:8},
+"круассан": {name:"Круассан", sugar:7},
+"булочка": {name:"Сдобная булочка", sugar:15},
+"блины": {name:"Блины", sugar:5},
+"сырники": {name:"Сырники", sugar:8},
+"пицца": {name:"Пицца", sugar:3},
+"сухари": {name:"Сухари", sugar:6},
+"чипсы": {name:"Картофельные чипсы", sugar:1}
+};
+
+
+function calculate() {
+  const input = document.getElementById("product").value.trim().toLowerCase();
+  const weight = Number(document.getElementById("weight").value);
+  const result = document.getElementById("result");
+
+  if (!database[input]) {
+    alert("Такого продукта пока нет в нашей базе. Попробуй другой!");
+    return;
+  }
+
+  if (!Number.isFinite(weight) || weight <= 0) {
+    alert("Введи корректную массу порции.");
+    return;
+  }
+
+  const product = database[input];
+  const grams = product.sugar * weight / 100;
+  const cubes = grams / 4;
+
+  document.getElementById("productName").textContent = product.name;
+  document.getElementById("grams").textContent =
+    grams.toFixed(1) + " г";
+
+  document.getElementById("cubeNumber").textContent =
+    cubes.toFixed(1);
+
+  document.getElementById("cubes").textContent =
+    "🧊 ".repeat(Math.min(Math.ceil(cubes), 50));
+
+  document.getElementById("explanation").textContent =
+    "Расчёт выполнен для порции " + weight +
+    " г. Один условный кубик сахара принят за 4 г.";
+
+  result.style.display = "block";
+}
+</script>
+
+</body>
+</html>
